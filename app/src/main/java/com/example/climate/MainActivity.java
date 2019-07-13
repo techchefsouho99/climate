@@ -33,14 +33,17 @@ public class MainActivity extends AppCompatActivity {
 
     final int REQUEST_CODE=123;
 
+    final String LOGCAT_TAG = "Clima";
+
     // Member Variables:
 
+    boolean mUseLocation=true;
     TextView mCityLabel;
     ImageView mWeatherImage;
     TextView mTemperatureLabel;
 
     // Declaring a LocationManager and a LocationListener here:
-    LocationManager mlocationManager;
+    LocationManager mLocationManager;
     LocationListener mLocationListener;
 
     @Override
@@ -56,17 +59,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(mUseLocation) getWeatherForCurrentLocation();
         Log.d("clima", "onresume called()");
-        getWeatherForCurrentLocation();
+
     }
 
     private void getWeatherForCurrentLocation() {
-        mlocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
+        Log.d("clima","hello");
+        mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         mLocationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                Log.d("clima", "on location cahnged");
+                Log.d("clima", "on location changed");
+
+                String longitude=String.valueOf(location.getLongitude());
+                String latitute=String.valueOf(location.getLatitude());
+                Log.d("clima","latitude"+latitute);
+                Log.d("clima","longitude"+longitude);
             }
 
             @Override
@@ -96,10 +105,20 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},REQUEST_CODE);
             return;
         }
-        mlocationManager.requestLocationUpdates(LOCATION_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener);
+
+        // Some additional log statements to help you debug
+        Log.d(LOGCAT_TAG, "Location Provider used: "
+                + mLocationManager.getProvider(LOCATION_PROVIDER).getName());
+        Log.d(LOGCAT_TAG, "Location Provider is enabled: "
+                + mLocationManager.isProviderEnabled(LOCATION_PROVIDER));
+        Log.d(LOGCAT_TAG, "Last known location (if any): "
+                + mLocationManager.getLastKnownLocation(LOCATION_PROVIDER));
+        Log.d(LOGCAT_TAG, "Requesting location updates");
+        mLocationManager.requestLocationUpdates(LOCATION_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener);
+
     }
 
-    @Override
+    /*@Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
@@ -111,5 +130,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("clima","log denied");
             }
         }
-    }
+    }*/
 }
