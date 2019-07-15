@@ -48,17 +48,13 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="false"
-        android:layout_alignParentLeft="false"
-        >
+        android:layout_alignParentLeft="false">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/weatherSymbolIV"
-            android:src="@drawable/dunno"
-
-
-            />
+            android:src="@drawable/dunno" />
     </FrameLayout>
 
 </RelativeLayout>
