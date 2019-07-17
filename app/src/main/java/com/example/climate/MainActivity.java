@@ -34,11 +34,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mCityLabel=(TextView)findViewById(R.id.locationTV);
+        mCityLabel=(TextView)this.findViewById(R.id.locationTV);
+        mCityLabel.setSelected(true);
 
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 101);
         }
 
     }
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
         mCityLabel.setText(addresses.get(0).getAddressLine(0));
+
         }
         catch(Exception e) {
             e.printStackTrace();
