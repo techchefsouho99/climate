@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
 
 
     TextView mCityLabel;
-    ImageButton web;
+    TextView web;
 
     LocationManager locationManager;
     int c=1;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         setContentView(R.layout.activity_main);
         mCityLabel=(TextView)this.findViewById(R.id.locationTV);
         mCityLabel.setSelected(true);
-        web=(ImageButton)findViewById(R.id.changeCityButton);
+        web=(TextView) findViewById(R.id.tempTV);
         if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 101);
@@ -57,13 +57,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener{
         }
     }
     void getLocation() {
+
         try {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 5, this);
         }
+
         catch(SecurityException e) {
             e.printStackTrace();
         }
+
     }
 
 

@@ -8,20 +8,21 @@
     android:background="@drawable/weather_background">
 
     <TextView
+        android:id="@+id/locationTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/default_location"
-        android:id="@+id/locationTV"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:singleLine="true"
+        android:layout_below="@+id/changeCityButton"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toLeftOf="@+id/tempTV"
         android:ellipsize="marquee"
         android:scrollHorizontally="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="70dp"/>
+        android:singleLine="true"
+        android:text="@string/default_location"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
 
     <TextView
         android:layout_width="wrap_content"

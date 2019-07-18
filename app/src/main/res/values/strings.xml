@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Clima</string>
-    <string name="default_temp">NA</string>
+    <string name="default_temp">GO</string>
     <string name="default_location">Fetching Your Location ...</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_tabbed">TabbedActivity</string>
 </resources>
