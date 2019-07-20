@@ -1,4 +1,4 @@
-package com.example.climate.ui.main;
+package com.example.climate;
 
 import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
