@@ -7,4 +7,5 @@
     <string name="tab_text_2">CITIES</string>
     <string name="tab_string_3">EXTRAS</string>
     <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="action_settings">SETTINGS</string>
 </resources>
