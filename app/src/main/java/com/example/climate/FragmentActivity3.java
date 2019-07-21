@@ -24,9 +24,11 @@ public class FragmentActivity3 extends Fragment {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
             }
         });
-        return super.onCreateView(inflater, container, savedInstanceState);
+        //return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
+
 }

@@ -24,9 +24,10 @@ public class FragmentActivity2 extends Fragment {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "2", Toast.LENGTH_SHORT).show();
             }
         });
-        return super.onCreateView(inflater, container, savedInstanceState);
+        //return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 }

@@ -27,6 +27,7 @@ public class FragmentActivity1 extends Fragment {
                 Toast.makeText(getActivity(),"1",Toast.LENGTH_SHORT).show();
             }
         });
-        return super.onCreateView(inflater, container, savedInstanceState);
+        //return super.onCreateView(inflater, container, savedInstanceState);
+        return view;
     }
 }
