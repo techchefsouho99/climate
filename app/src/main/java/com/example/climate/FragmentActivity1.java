@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class FragmentActivity1 extends Fragment {
 
-    private Button button1;
+    private ImageButton button1;
 
     @Nullable
     @Override
@@ -20,7 +21,7 @@ public class FragmentActivity1 extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.activity_fragment1,container,false);
 
-        button1=(Button)view.findViewById(R.id.frag_button1);
+        button1=(ImageButton)view.findViewById(R.id.changeCityButton);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
