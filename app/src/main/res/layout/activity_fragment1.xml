@@ -1,67 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/weather_background">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/locationTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/changeCityButton"
-            android:layout_alignParentLeft="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="5dp"
-            android:layout_toLeftOf="@+id/tempTV"
-            android:ellipsize="marquee"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="@string/default_location"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/tempTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/changeCityButton"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="@string/default_temp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/white"
-            android:textSize="90sp" />
-
-        <ImageButton
-            android:id="@+id/changeCityButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:background="@null"
-            android:src="@drawable/change_city_symbol_small" />
-
-        <FrameLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentLeft="false"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/weatherSymbolIV"
+            <TextView
+                android:id="@+id/locationTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/changeCityButton"
+                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@+id/tempTV"
+                android:ellipsize="marquee"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/default_location"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tempTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/changeCityButton"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/default_temp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white"
+                android:textSize="90sp" />
+
+            <ImageButton
+                android:id="@+id/changeCityButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:src="@drawable/change_city_symbol_small" />
+
+            <FrameLayout
+                android:id="@+id/main_frame"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/dunno" />
-        </FrameLayout>
+                android:layout_height="220dp"
+                android:layout_below="@id/tempTV"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentLeft="false"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
 
-    </RelativeLayout>
+                <ImageView
+                    android:id="@+id/weatherSymbolIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/dunno" />
+            </FrameLayout>
 
-</ScrollView>
+        </RelativeLayout>
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:backgroundTint="#60606b"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_location_on_black_24dp" />
+
+</android.support.design.widget.CoordinatorLayout>
