@@ -2,16 +2,37 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <EditText
+        android:id="@+id/cityname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tab 2"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:text="CITY" />
+
+    <TextView
+        android:id="@+id/citydetails"
+        android:text="details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cityname"/>
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30"
+        android:layout_below="@+id/citydetails"/>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="date"
+        android:layout_below="@+id/temp"/>
+
     <Button
         android:id="@+id/frag_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Page2"/>
+        android:text="Page2"
+        android:layout_below="@+id/date"/>
 
 </RelativeLayout>
