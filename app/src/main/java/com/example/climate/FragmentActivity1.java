@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -31,13 +32,16 @@ import java.util.Locale;
 
 public class FragmentActivity1 extends Fragment  implements LocationListener{
 
+    private TextToSpeech textToSpeech;
     private ImageButton button1;
 
+    TextView curlocation;
     TextView mCityLabel;
     TextView web;
 
     LocationManager locationManager;
     int c=1;
+    int d=1;
 
     @Nullable
     @Override
@@ -55,6 +59,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
         mCityLabel=(TextView)view.findViewById(R.id.locationTV);
         mCityLabel.setSelected(true);
         web=(TextView)view.findViewById(R.id.tempTV);
+        curlocation=(TextView)view.findViewById(R.id.locationTV);
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 101);
@@ -93,18 +98,39 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
             Log.d("climate",""+location.getLongitude());
             mCityLabel.setText(addresses.get(0).getAddressLine(0));
 
-            web.setOnClickListener(new View.OnClickListener() {
+            textToSpeech =new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
                 @Override
-                public void onClick(View view) {
-                    Uri uri= Uri.parse("https://www.windy.com/-Temperature-temp?temp,"+location.getLatitude()+","+location.getLongitude());
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
+                public void onInit(int i) {
+                    if(i==TextToSpeech.SUCCESS){
+                        int ttsLang=textToSpeech.setLanguage(Locale.US);
+                        if(ttsLang==TextToSpeech.LANG_MISSING_DATA || ttsLang==TextToSpeech.LANG_NOT_SUPPORTED){
+                            Log.e("Clima","The language is not supported");
+                        }
+                        else {
+                            Log.i("CLima","Language supported");
+                            speechfromtext();
+                        }
+                        Log.i("TTS", "Initialization success.");
+                    }
+
+                    else {
+                        Toast.makeText(getActivity(), "TTS Initialization failed!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
         }
         catch(Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
         }
     }
 
@@ -121,5 +147,17 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
     @Override
     public void onProviderDisabled(String s) {
         Toast.makeText(getActivity(),"Please Enable GPS and Internet", Toast.LENGTH_SHORT);
+    }
+    public void speechfromtext()
+    {
+
+        String data = curlocation.getText().toString();
+        //Toast.makeText(getActivity(),""+data,Toast.LENGTH_SHORT).show();
+        Log.i("TTS", "button clicked: " + data);
+        int speechStatus= textToSpeech.speak(data, TextToSpeech.QUEUE_ADD, null);
+
+        if (speechStatus == TextToSpeech.ERROR) {
+            Log.e("TTS", "Error in converting Text to Speech!");
+        }
     }
 }
