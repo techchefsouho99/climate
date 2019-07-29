@@ -79,6 +79,6 @@
         android:layout_gravity="bottom|end"
         app:backgroundTint="#60606b"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_location_on_black_24dp" />
+        android:src="@drawable/ic_location_on_black_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

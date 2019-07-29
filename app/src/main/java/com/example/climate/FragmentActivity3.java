@@ -20,13 +20,13 @@ public class FragmentActivity3 extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_fragment3, container, false);
 
-        button3 = (Button) view.findViewById(R.id.frag_button3);
+        /*button3 = (Button) view.findViewById(R.id.frag_button3);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
         //return super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
