@@ -42,16 +42,6 @@
                 android:textColor="@color/white"
                 android:textSize="90sp" />
 
-            <ImageButton
-                android:id="@+id/changeCityButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:background="@null"
-                android:src="@drawable/change_city_symbol_small" />
-
             <FrameLayout
                 android:id="@+id/main_frame"
                 android:layout_width="match_parent"
