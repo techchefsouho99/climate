@@ -8,14 +8,14 @@
     android:background="@drawable/weather_background">
 
     <TextView
-        android:id="@+id/locationTV"
+        android:id="@+id/current_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/changeCityButton"
         android:layout_alignParentLeft="true"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="5dp"
-        android:layout_toLeftOf="@+id/tempTV"
+        android:layout_toLeftOf="@+id/current_temperature"
         android:ellipsize="marquee"
         android:scrollHorizontally="true"
         android:singleLine="true"
@@ -31,7 +31,7 @@
         android:textSize="90sp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/default_temp"
-        android:id="@+id/tempTV"
+        android:id="@+id/current_temperature"
         android:layout_below="@+id/changeCityButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>

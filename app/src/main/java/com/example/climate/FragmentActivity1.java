@@ -2,14 +2,12 @@ package com.example.climate;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
@@ -17,12 +15,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +29,6 @@ import java.util.Locale;
 public class FragmentActivity1 extends Fragment  implements LocationListener{
 
     private TextToSpeech textToSpeech;
-    private ImageButton button1;
 
     TextView curlocation;
     TextView mCityLabel;
@@ -49,17 +44,11 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
                              @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.activity_fragment1,container,false);
 
-        button1=(ImageButton)view.findViewById(R.id.changeCityButton);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(),"1",Toast.LENGTH_SHORT).show();
-            }
-        });
-        mCityLabel=(TextView)view.findViewById(R.id.locationTV);
+
+        mCityLabel=(TextView)view.findViewById(R.id.current_location);
         mCityLabel.setSelected(true);
-        web=(TextView)view.findViewById(R.id.tempTV);
-        curlocation=(TextView)view.findViewById(R.id.locationTV);
+        web=(TextView)view.findViewById(R.id.current_temperature);
+        curlocation=(TextView)view.findViewById(R.id.current_location);
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 101);
