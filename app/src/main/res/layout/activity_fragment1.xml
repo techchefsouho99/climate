@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/weather_background">
+    android:background="@drawable/fragment_gradient">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,11 +17,10 @@
                 android:id="@+id/current_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/changeCityButton"
-                android:layout_alignParentLeft="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="5dp"
-                android:layout_toLeftOf="@+id/current_temperature"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:ellipsize="marquee"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
@@ -30,34 +29,24 @@
                 android:textColor="@color/white"
                 android:textSize="25sp" />
 
+            <ImageView
+                android:id="@+id/current_climatic_condition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/current_location"
+                android:src="@drawable/dunno"
+                android:layout_centerHorizontal="true"/>
+
             <TextView
                 android:id="@+id/current_temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/changeCityButton"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/current_climatic_condition"
                 android:text="@string/default_temp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/white"
                 android:textSize="90sp" />
-
-            <FrameLayout
-                android:id="@+id/main_frame"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:layout_below="@id/current_temperature"
-                android:layout_alignParentStart="false"
-                android:layout_alignParentLeft="false"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
-
-                <ImageView
-                    android:id="@+id/weatherSymbolIV"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/dunno" />
-            </FrameLayout>
 
         </RelativeLayout>
     </ScrollView>
