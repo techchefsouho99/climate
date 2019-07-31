@@ -5,9 +5,18 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/splash_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/rainbow"
-        android:layout_margin="5dp"/>
+        android:layout_margin="15dp"/>
+    <TextView
+        android:id="@+id/creator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cretaed by SOUHARDYA ADHIKARY"
+        android:layout_below="@+id/splash_image"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"/>
 
 </RelativeLayout>
