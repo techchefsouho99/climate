@@ -2,6 +2,7 @@ package com.example.climate;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -19,9 +20,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Locale;
@@ -30,13 +41,16 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
 
     private TextToSpeech textToSpeech;
 
+    TextView curcity;
     TextView curlocation;
-    TextView mCityLabel;
-    TextView web;
+    TextView current_location_address;
+    TextView current_temperature;
 
     LocationManager locationManager;
     int c=1;
     int d=1;
+    public String lati;
+    public String longi;
 
     @Nullable
     @Override
@@ -45,16 +59,19 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
         View view=inflater.inflate(R.layout.activity_fragment1,container,false);
 
 
-        mCityLabel=(TextView)view.findViewById(R.id.current_location);
-        mCityLabel.setSelected(true);
-        web=(TextView)view.findViewById(R.id.current_temperature);
+        current_location_address =(TextView)view.findViewById(R.id.current_location);
+        current_location_address.setSelected(true);
+        current_temperature=(TextView)view.findViewById(R.id.current_temperature);
+        curcity=(TextView)view.findViewById(R.id.current_city);
         curlocation=(TextView)view.findViewById(R.id.current_location);
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 101);
         }
         //return super.onCreateView(inflater, container, savedInstanceState);
+        findweather();
         return view;
+
     }
 
     @Override
@@ -65,6 +82,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
             c++;
         }
     }
+
     void getLocation() {
 
         try {
@@ -85,7 +103,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             Log.d("climate",""+location.getLatitude());
             Log.d("climate",""+location.getLongitude());
-            mCityLabel.setText(addresses.get(0).getAddressLine(0));
+            current_location_address.setText(addresses.get(0).getAddressLine(0));
 
             textToSpeech =new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
                 @Override
@@ -113,7 +131,6 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
             e.printStackTrace();
         }
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -121,6 +138,48 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
             textToSpeech.stop();
             textToSpeech.shutdown();
         }
+    }
+    public void findweather(){
+        Log.d("CLima","findweather");
+        SharedPreferences sharedPreferences=getActivity().getPreferences(Context.MODE_PRIVATE);
+        float lat= (float) sharedPreferences.getFloat("lat", 2);
+        String lati=String.valueOf(lat);
+        float lon= (float) sharedPreferences.getFloat("long",2);
+        String longi=String.valueOf(lon);
+        Log.d("Clima",""+lati);
+        Log.d("Clima",""+longi);
+        String url="http://api.openweathermap.org/data/2.5/weather?lat="+lati+"&lon="+longi+"&appid=6dbe05544e37f2e893cdd1ba493d5181";
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject jsonObject=response.getJSONObject("main");
+                    JSONArray jsonArray=response.getJSONArray("weather");
+                    JSONObject object=jsonArray.getJSONObject(0);
+                    float temp=Float.valueOf((float) jsonObject.getDouble("temp"));
+                    String description =object.getString("description");
+                    String name=response.getString("name");
+                    Log.d("Clima",""+name);
+                    Log.d("Clima",""+description);
+                    Log.d("Clima",""+temp);
+                    curcity.setText(name);
+                    ApiDecodeActivity apiDecodeActivity=new ApiDecodeActivity();
+
+                    current_temperature.setText(apiDecodeActivity.FahToCenti(temp)+(char)0x00B0+"C");
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        RequestQueue requestQueue= (RequestQueue) Volley.newRequestQueue(getActivity().getApplicationContext());
+        requestQueue.add(jsonObjectRequest);
     }
 
     @Override

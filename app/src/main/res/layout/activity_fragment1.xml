@@ -46,7 +46,15 @@
                 android:text="@string/default_temp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/white"
-                android:textSize="90sp" />
+                android:textSize="70sp" />
+            <TextView
+                android:id="@+id/current_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_below="@id/current_temperature"
+                android:layout_centerHorizontal="true"
+                android:textSize="25sp"/>
 
         </RelativeLayout>
     </ScrollView>

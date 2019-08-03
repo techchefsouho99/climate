@@ -47,13 +47,7 @@ public class FragmentActivity2 extends Fragment {
 
 
         button2 = (Button) view.findViewById(R.id.frag_button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(getActivity(), "2", Toast.LENGTH_SHORT).show();
-                findweather();
-            }
-        });
+        findweather();
         //return super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
@@ -66,7 +60,6 @@ public class FragmentActivity2 extends Fragment {
         String longi=String.valueOf(lon);
         Log.d("Clima",""+lati);
         Log.d("Clima",""+longi);
-        //String url="http://api.openweathermap.org/data/2.5/weather?lat="+lati+"&lon="+longi+"&appid=6dbe05544e37f2e893cdd1ba493d5181";
         String url="http://api.openweathermap.org/data/2.5/weather?lat="+lati+"&lon="+longi+"&appid=6dbe05544e37f2e893cdd1ba493d5181";
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
