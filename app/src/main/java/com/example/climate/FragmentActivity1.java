@@ -165,7 +165,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
                     curcity.setText(name);
                     ApiDecodeActivity apiDecodeActivity=new ApiDecodeActivity();
 
-                    current_temperature.setText(apiDecodeActivity.FahToCenti(temp)+(char)0x00B0+"C");
+                    current_temperature.setText(apiDecodeActivity.KevToCenti(temp)+(char)0x00B0+"C");
 
 
                 } catch (JSONException e) {

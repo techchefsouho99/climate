@@ -60,6 +60,7 @@ public class FragmentActivity2 extends Fragment {
         String longi=String.valueOf(lon);
         Log.d("Clima",""+lati);
         Log.d("Clima",""+longi);
+        //http://api.openweathermap.org/data/2.5/weather?lat=22.5434679&lon=88.3785973&appid=6dbe05544e37f2e893cdd1ba493d5181
         String url="http://api.openweathermap.org/data/2.5/weather?lat="+lati+"&lon="+longi+"&appid=6dbe05544e37f2e893cdd1ba493d5181";
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
