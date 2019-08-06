@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
     TextView curlocation;
     TextView current_location_address;
     TextView current_temperature;
+    ImageView current_climate;
 
     LocationManager locationManager;
     int c=1;
@@ -64,6 +66,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
         current_temperature=(TextView)view.findViewById(R.id.current_temperature);
         curcity=(TextView)view.findViewById(R.id.current_city);
         curlocation=(TextView)view.findViewById(R.id.current_location);
+        current_climate=(ImageView)view.findViewById(R.id.current_climatic_condition);
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 101);
@@ -140,6 +143,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
         }
     }
     public void findweather(){
+
         Log.d("CLima","findweather");
         SharedPreferences sharedPreferences=getActivity().getPreferences(Context.MODE_PRIVATE);
         float lat= (float) sharedPreferences.getFloat("lat", 2);
@@ -167,6 +171,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
 
                     current_temperature.setText(apiDecodeActivity.KevToCenti(temp)+(char)0x00B0+"C");
 
+                    ImageChange(description);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -181,7 +186,52 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
         RequestQueue requestQueue= (RequestQueue) Volley.newRequestQueue(getActivity().getApplicationContext());
         requestQueue.add(jsonObjectRequest);
     }
+    public void ImageChange(String s){
+        Toast.makeText(getActivity(),"hello"+s, Toast.LENGTH_LONG);
 
+        if("broken clouds".equals(s)){
+            current_climate.setImageResource(R.drawable.broken_clouds);
+        }
+        if("clear sky".equals(s)){
+            current_climate.setImageResource(R.drawable.clear_sky);
+        }
+        if("few clouds".equals(s)){
+            current_climate.setImageResource(R.drawable.few_clouds);
+        }
+        if("fog".equals(s)){
+            current_climate.setImageResource(R.drawable.fog);
+        }
+        if("haze".equals(s)) {
+            current_climate.setImageResource(R.drawable.haze);
+        }
+        if("light intensity shower rain".equals(s)) {
+            current_climate.setImageResource(R.drawable.light_intensity_shower_rain);
+        }
+        if("light rain".equals(s)) {
+            current_climate.setImageResource(R.drawable.light_rain);
+        }
+        if("mist".equals(s)) {
+            current_climate.setImageResource(R.drawable.mist);
+        }
+        if("moderate rain".equals(s)) {
+            current_climate.setImageResource(R.drawable.moderate_rain);
+        }
+        if("overcast clouds".equals(s)) {
+            current_climate.setImageResource(R.drawable.overcast_clouds);
+        }
+        if("scattered clouds".equals(s)) {
+            current_climate.setImageResource(R.drawable.scattered_clouds);
+        }
+        if("shower rain".equals(s)) {
+            current_climate.setImageResource(R.drawable.shower_rain);
+        }
+        if("heavy intensity rain".equals(s)){
+            current_climate.setImageResource(R.drawable.heavy_intensity_rain);
+        }
+        if("thunderstorm".equals(s)){
+            current_climate.setImageResource(R.drawable.thunderstorm);
+        }
+    }
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
 
