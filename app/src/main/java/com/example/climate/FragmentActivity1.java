@@ -35,6 +35,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -47,6 +50,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
     TextView current_location_address;
     TextView current_temperature;
     ImageView current_climate;
+    TextView date_and_climate;
 
     LocationManager locationManager;
     int c=1;
@@ -67,6 +71,7 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
         curcity=(TextView)view.findViewById(R.id.current_city);
         curlocation=(TextView)view.findViewById(R.id.current_location);
         current_climate=(ImageView)view.findViewById(R.id.current_climatic_condition);
+        date_and_climate=(TextView)view.findViewById(R.id.date_and_condition);
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 101);
@@ -171,6 +176,10 @@ public class FragmentActivity1 extends Fragment  implements LocationListener{
 
                     current_temperature.setText(apiDecodeActivity.KevToCenti(temp)+(char)0x00B0+"C");
 
+
+                    DateFormat df = new SimpleDateFormat("EEE MMM d");
+                    String date = df.format(Calendar.getInstance().getTime());
+                    date_and_climate.setText(date+", "+description.toUpperCase());
                     ImageChange(description);
 
                 } catch (JSONException e) {

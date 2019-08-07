@@ -29,16 +29,19 @@
                 android:text="@string/default_location"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/date_and_condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/current_location"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:text="hello"/>
+                android:layout_marginLeft="35dp"
+                android:textColor="#fff"
+                android:textSize="25sp"
+                android:fontFamily="cursive"/>
 
             <ImageView
                 android:id="@+id/current_climatic_condition"
@@ -53,7 +56,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/current_climatic_condition"
-                android:text="@string/default_temp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/white"
                 android:textSize="70sp" />
@@ -66,6 +68,17 @@
                 android:layout_below="@id/current_temperature"
                 android:layout_centerHorizontal="true"
                 android:textSize="25sp"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:foregroundGravity="center"
+                android:layout_centerInParent="true"
+                android:clipToPadding="false"
+                android:overScrollMode="never">
+
+            </android.support.v4.view.ViewPager>
 
         </RelativeLayout>
     </ScrollView>
